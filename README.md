@@ -1,8 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+View this project live at [Firebase](https://countries-db.web.app/).
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+This project is a simple SPA country database made with the data from [REST Countries API](https://restcountries.eu).
+
+It was made mainly with [React](https://reactjs.org), [Material UI](https://material-ui.com), and [Redux](https://redux.js.org/), and deployed with [Firebase](https://firebase.google.com).
+You can use any JavaScript framework/library on the front-end such as [React](https://reactjs.org).
+
+## Features
+
+- See all countries from the API on the homepage
+- Search for a country using an `input` field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode
 
 ### `yarn start`
 
