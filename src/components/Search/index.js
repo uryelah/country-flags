@@ -9,7 +9,7 @@ import './styles.css';
 
 const Search = ({ classes, handleSearch, search }) => {
   return (
-    <Grid item sm={12} md={5} className={`${classes.input} search`}>
+    <Grid item sm={12} md={5} style={{ height: '56px', alignItems: 'center', display: 'flex', justifyContent: 'flex-start', padding: 0 }} className={`${classes.input} search`}>
     <TextField
       fullWidth
       variant="outlined"

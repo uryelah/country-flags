@@ -23,25 +23,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.dark .MuiInputBase-input {
-  color: #fff;
-}
-
-.MuiInputBase-input {
-  font-weight: 600 !important;
-}
-
-.light [class*=makeStyles-input].MuiGrid-item, .dark [class*=makeStyles-input].MuiGrid-item {
-  height: 56px;
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-  padding: 0;
-}
-
-@media only screen and (max-width: 768px) {
-  .light .search, .dark .search {
-    margin-top: 24px;
-  }
-}
