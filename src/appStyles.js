@@ -14,8 +14,8 @@ const baseTheme = {
     values: {
       xs: 0,
       sm: 375,
-      md: 960,
-      lg: 1280,
+      md: 768,
+      lg: 960,
       xl: 1440,
     },
   },

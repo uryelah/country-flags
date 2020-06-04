@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as SubscriptionActions from '../../actions/subscription';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import Item from '../../components/Item';
@@ -37,7 +37,11 @@ const List = ({ actions, history, state, cache }) => {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState('All');
   const [search, setSearch] = useState('');
+  const [matches, setMatches] = useState(false);
+  const [matchesBig, setMatchesBig] = useState(false);
+  const [size, setSize] = useState([0, 0]);
 
+  const theme = useTheme();
   const classes = useStyles();
 
   const fetchCountries = () => {
@@ -76,6 +80,41 @@ const List = ({ actions, history, state, cache }) => {
     }
   };
 
+  const checkWidth = () => {
+    setSize([window.innerWidth, window.innerHeight])
+    
+    const width = window.innerWidth;
+
+    if (width <= theme.breakpoints.values.md) {
+      setMatches(true);
+      setMatchesBig(false);
+    } else if (width <= theme.breakpoints.values.lg) {
+      setMatches(false);
+      setMatchesBig(true);
+    } else {
+      setMatches(false);
+      setMatchesBig(false);
+    }
+  };
+
+  const checkOnResize = () => {
+    window.addEventListener('resize', () => {
+      checkWidth();
+    });
+  };
+
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  useEffect(checkWidth, []);
+
+  useEffect(checkOnResize, [size[0]]);
+
   useEffect(fetchCountries, [region]);
 
   useEffect(() => {
@@ -92,14 +131,14 @@ const List = ({ actions, history, state, cache }) => {
           : (
             <>
               <Grid item xs={12}>
-                <Grid container justify="space-between">
+                <Grid container justify="space-between" alignItems="center" spacing={9}>
                   <Search classes={classes} handleSearch={handleSearch} search={search} />
                   <Regions classes={classes} handleChange={handleChange} region={region} />
                 </Grid>
               </Grid>
               {
                 countries && countries.map(country => (
-                  <Item key={country.name} country={country} handleClick={handleClick} />
+                  <Item key={country.name} country={country} matches={matches} matchesBig={matchesBig} handleClick={handleClick} />
                 ))
               }
             </>

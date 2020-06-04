@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +11,8 @@ import {
   Typography
 } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
+import './styles.css';
 
 const useStyles = makeStyles(theme => {
   return ({
@@ -45,6 +47,17 @@ const useStyles = makeStyles(theme => {
       color: theme.custom ? theme.custom.palette.text : 'inherit',
       fontSize: '16px',
     },
+    mockImg: {
+      width: '100vw',
+      height: '75vw',
+    },
+    subTitle: {
+      fontWeight: 600,
+      whiteSpace: 'no-wrap',
+    },
+    borders: {
+      fontSize: '18px',
+    },
     textColumn: {
       textAlign: 'left',
     },
@@ -54,54 +67,66 @@ const useStyles = makeStyles(theme => {
   })
 });
 
-const Detail = ({ handleBack, handleRedirect,  neighbors, item }) => {
+const Detail = ({ handleBack, handleRedirect, neighbors, item, state }) => {
   const classes = useStyles();
+  
+  const [img, setImg] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setImg(true);
+    }, 500);
+  }, []);
 
   return (
     <Grid container spacing={5}>
       <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-start' }}>
         <Button className={classes.back} onClick={handleBack} variant="outlined">
           <KeyboardBackspaceIcon className={classes.backIco} />
-                  Back
-                </Button>
+          Back
+        </Button>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} lg={6}>
         <div className={classes.flag}>
-          <img src={item.flag} alt={`${item.name} flag`} />
+          {
+            img
+            ? <img src={item.flag} alt={`${item.name} flag`} />
+            : <div className={classes.mockImg} />
+          }
         </div>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <Grid className={classes.content} container spacing={5}>
+      <Grid item xs={12} lg={6}>
+        <Grid className={`${classes.content} content`} container spacing={5}>
           <Grid className={classes.textColumn} style={{ paddingBottom: 0 }} item xs={12}>
             <Typography className={classes.title} variant="h5" component="h2">
               {item.name}
             </Typography>
           </Grid>
-          <Grid className={classes.textColumn} item xs={6}>
-            <p><strong>Native Name: </strong>{item.nativeName}</p>
-            <p><strong>Population: </strong>{item.population}</p>
-            <p><strong>Region: </strong>{item.region}</p>
-            <p><strong>Sub Region: </strong>{item.subregion}</p>
-            <p><strong>Capital: </strong>{item.capital}</p>
+          <Grid className={classes.textColumn} item xs={12} lg={6}>
+            <p><span className={classes.subTitle}>Native Name: </span>{item.nativeName}</p>
+            <p><span className={classes.subTitle}>Population: </span>{item.population}</p>
+            <p><span className={classes.subTitle}>Region: </span>{item.region}</p>
+            <p><span className={classes.subTitle}>Sub Region: </span>{item.subregion}</p>
+            <p><span className={classes.subTitle}>Capital: </span>{item.capital}</p>
           </Grid>
-          <Grid className={classes.textColumn} item xs={6}>
-            <p><strong>Top Level Domain: </strong>{item.topLevelDomain && item.topLevelDomain[0]}</p>
-            <p><strong>Currencies: </strong>
+          <Grid className={classes.textColumn} item xs={12} lg={6}>
+            <p><span className={classes.subTitle}>Top Level Domain: </span>{item.topLevelDomain && item.topLevelDomain[0]}</p>
+            <p><span className={classes.subTitle}>Currencies: </span>
               {
                 item.currencies && item.currencies.map(currency => currency.name).join(', ')
               }
             </p>
-            <p><strong>Languages: </strong>
+            <p><span className={classes.subTitle}>Languages: </span>
               {
                 item.languages && item.languages.map(language => language.name).join(', ')
               }
             </p>
           </Grid>
-          <Grid item xs={12} style={{ display: 'flex' }}>
+          <Grid item xs={12} className="neighbors">
             <p style={{ flexShrink: '0', paddingRight: '15px ' }}>
-              <strong style={{ whiteSpace: 'no-wrap' }}>
+              <span className={`${classes.subTitle} ${classes.borders}`}>
                 Border Countries:
-                      </strong>
+              </span>
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', paddingTop: '5px' }}>
               {

@@ -1,0 +1,14 @@
+.neighbors {
+  display: flex;
+}
+
+@media only screen and (max-width: 960px) {
+  .neighbors {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .content {
+    padding-left: 0 !important;
+  }
+}

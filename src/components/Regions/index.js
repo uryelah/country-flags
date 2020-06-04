@@ -2,11 +2,13 @@ import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { Grid, FormControl, Select, MenuItem } from '@material-ui/core';
 
+import './styles.css';
+
 const Regions = ({ classes, handleChange, region }) => {
   const theme = useTheme();
 
   return (
-    <Grid item xs={6} md={7} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <Grid item sm={12} md={7} className="regions">
       <FormControl>
         {
           document.querySelector('.dark')

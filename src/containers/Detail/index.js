@@ -59,11 +59,11 @@ const Detail = ({ actions, history, match, state }) => {
   return (
     <div className={classes.main} key={item}>
       {
-        item && !state.loading
-          ? (
-            <CountryDetail item={item} neighbors={neighbors} handleBack={handleBack} handleRedirect={handleRedirect} />
+        state.loading
+          ? <Loader options={{ scope: 'element' }} />
+          : (
+            item && <CountryDetail item={item} neighbors={neighbors} handleBack={handleBack} handleRedirect={handleRedirect} />
           )
-          : <Loader options={{ scope: 'element' }} />
       }
     </div>
   )

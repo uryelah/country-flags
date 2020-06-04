@@ -1,4 +1,11 @@
-.MuiPopover-paper {
-  background-color: red !important;
-  color: #fff !important;
+.light .regions, .dark .regions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 36px 0 !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .light .regions, .dark .regions {
+    justify-content: flex-start !important;
+  }
 }

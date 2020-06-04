@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -10,48 +10,31 @@ const useStyles = makeStyles(theme => {
     main: {
       backgroundColor: theme.custom ? theme.custom.palette.element : 'transparent',
       color: theme.custom ? theme.custom.palette.text : 'inherit',
+      height: '100%',
       overflow: 'hidden',
+    },
+    subTitle: {
+      fontWeight: 600,
+    },
+    summary: {
+      margin: '4px 0',
     },
     title: {
       fontWeight: 800,
+      marginBottom: '20px',
     },
     text: {
       boxSizing: 'border-box',
       fontSize: '14px',
       padding: '18px',
+      paddingBottom: '24px',
       textAlign: 'left',
-      minHeight: '246px',
     },
   })
 });
 
-const Item = ({ country, handleClick }) => {
+const Item = ({ country, handleClick, matches, matchesBig }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const [matches, setMatches] = useState(false);
-  const [matchesBig, setMatchesBig] = useState(false);
-
-  const checkWidth = () => {
-    const width = window.document.body.clientWidth;
-
-    if (width <= theme.breakpoints.values.sm) {
-      setMatches(true);
-      setMatchesBig(false);
-    } else if (width <= theme.breakpoints.values.md) {
-      setMatches(false);
-      setMatchesBig(true);
-    }
-  };
-
-  const checkOnResize = () => {
-    window.addEventListener('resize', () => {
-      checkWidth();
-    });
-  };
-
-  useEffect(checkWidth, []);
-
-  useEffect(checkOnResize, []);
 
   const handleKeyDown = (e, country) => {
     if (e.key === 'Enter') {
@@ -62,16 +45,16 @@ const Item = ({ country, handleClick }) => {
   return (
     <Grid
       item
-      xs={12}
-      sm={6}
-      md={3}
+      sm={12}
+      md={6}
+      lg={3}
     >
       <div
         role="button"
         tabIndex={0}
         onKeyDown={e => handleKeyDown(e, country)}
         onClick={() => handleClick(country)}
-        style={{ cursor: 'pointer', border: 'none', backgroundColor: 'transparent' }}
+        style={{ cursor: 'pointer', border: 'none', backgroundColor: 'transparent', height: '100%', }}
       >
         <Paper className={classes.main} elevation={3}>
           <Box style={{ backgroundImage: `url(${country.flag})`, backgroundPosition: 'center center', backgroundSize: 'cover', display: 'flex', height: `${matches ? `calc((100vw - 96px) * 0.75)` : (matchesBig ? `calc((50vw - 96px) * 0.75)` : `calc((25vw - 96px) * 0.75)`)}`, width: 'auto' }} />
@@ -81,9 +64,9 @@ const Item = ({ country, handleClick }) => {
                 country.name
               }
             </Typography>
-            <p><strong>Population:</strong> {country.population}</p>
-            <p><strong>Region:</strong> {country.region}</p>
-            <p><strong>Capital:</strong> {country.capital}</p>
+            <p className={classes.summary}><span className={classes.subTitle}>Population:</span> {country.population}</p>
+            <p className={classes.summary}><span className={classes.subTitle}>Region:</span> {country.region}</p>
+            <p className={classes.summary}><span className={classes.subTitle}>Capital:</span> {country.capital}</p>
           </Box>
         </Paper>
       </div>

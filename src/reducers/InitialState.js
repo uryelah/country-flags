@@ -6,9 +6,6 @@ const subState = {
 };
 
 const groupState = {
-  groupBy: [1, 2, 3, 4, 5, 6],
-  filter: null,
-  sorting: 1,
   dark: false,
 };
 
