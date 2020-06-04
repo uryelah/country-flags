@@ -2,6 +2,7 @@ import {
   FETCH_SUBSCRIPTION_BEGIN,
   FETCH_SUBSCRIPTION_SUCCESS,
   FETCH_SUBSCRIPTION_FAILURE,
+  STORE_SUBSCRIPTION_ITEM
 } from '../actions/subscription';
 
 import { subState } from './InitialState';
@@ -18,7 +19,8 @@ const subscriptionsReducer = (state = subState, action) => {
     case FETCH_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
-        subscription: action.payload,
+        item: action.item ? action.payload[0] : null,
+        subscription: action.item ? state.subscription : action.payload,
         loading: false,
       };
 
@@ -27,6 +29,12 @@ const subscriptionsReducer = (state = subState, action) => {
         ...state,
         error: action.payload,
         loading: false,
+      };
+
+    case STORE_SUBSCRIPTION_ITEM:
+      return {
+        ...state,
+        item: action.payload,
       };
 
     default:

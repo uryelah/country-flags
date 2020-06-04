@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Detail from './components/Detail';
-import List from './components/List';
+import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
+import { appTheme, darkTheme } from './appStyles';
 
-function App() {
+import Page from './components/Page';
+
+function App({ state }) {
+  const [theme, setTheme] = useState(null);
+
+  useEffect(() => {
+    setTheme(state.dark ? darkTheme : appTheme());
+  }, [state]);
+
   return (
-    <div className="App">
-      <NavBar />
-      <Switch>
-        <Route path="/:countryName" component={Detail} exact />
-        <Route path="/" component={List} />
-      </Switch>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Page/>
+    </ThemeProvider>
   );
 }
 
-export default App;
+function mapStateToProps({ state, group }) {
+  return { state: { ...state, ...group } };
+}
+
+export default connect(mapStateToProps, null)(App);
