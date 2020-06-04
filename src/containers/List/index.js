@@ -82,7 +82,7 @@ const List = ({ actions, history, state, cache }) => {
 
   const checkWidth = () => {
     setSize([window.innerWidth, window.innerHeight])
-    
+
     const width = window.innerWidth;
 
     if (width <= theme.breakpoints.values.md) {
@@ -125,17 +125,17 @@ const List = ({ actions, history, state, cache }) => {
 
   return (
     <Grid container spacing={4} style={{ boxSize: 'border-box', margin: '0 auto', maxWidth: '100%' }}>
+      <Grid item xs={12}>
+        <Grid container justify="space-between" alignItems="center" spacing={9}>
+          <Search classes={classes} handleSearch={handleSearch} search={search} />
+          <Regions classes={classes} handleChange={handleChange} region={region} />
+        </Grid>
+      </Grid>
       {
         state.loading
-          ? <Loader options={{scope: 'element'}} />
+          ? <Loader options={{ scope: 'element' }} />
           : (
             <>
-              <Grid item xs={12}>
-                <Grid container justify="space-between" alignItems="center" spacing={9}>
-                  <Search classes={classes} handleSearch={handleSearch} search={search} />
-                  <Regions classes={classes} handleChange={handleChange} region={region} />
-                </Grid>
-              </Grid>
               {
                 countries && countries.map(country => (
                   <Item key={country.name} country={country} matches={matches} matchesBig={matchesBig} handleClick={handleClick} />
