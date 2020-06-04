@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBar from '../NavBar';
+import NavBar from '../../components/NavBar';
 import Detail from '../Detail';
 import List from '../List';
 import '../../App.css';
@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => {
   })
 });
 
-function Page() {
+function Page({ className }) {
   const classes = useStyles();
 
   return (
-    <div className={`${classes.main} App`}>
+    <div className={`${classes.main} ${className} App`}>
       <NavBar />
       <Switch>
         <Route path="/:countryName" component={Detail} exact />

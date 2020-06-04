@@ -7,14 +7,18 @@ import * as SubscriptionActions from '../../actions/subscription';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import Item from '../Item';
-import Regions from '../Regions';
-import Search from '../Search';
+import Item from '../../components/Item';
+import Regions from '../../components/Regions';
+import Search from '../../components/Search';
+import Loader from '../../components/Loader';
 
 import './styles.css';
 
 const useStyles = makeStyles(theme => {
   return ({
+    color: {
+      color: theme.custom ? (theme.custom.palette.input ? theme.custom.palette.input : theme.custom.palette.text) : 'inherit',
+    },
     main: {
       backgroundColor: theme.custom ? theme.custom.palette.element : 'transparent',
       color: theme.custom ? theme.custom.palette.text : 'inherit',
@@ -23,13 +27,13 @@ const useStyles = makeStyles(theme => {
       backgroundColor: theme.custom ? theme.custom.palette.element : 'transparent',
       borderRadius: '4px',
       boxShadow: theme.shadows[2],
-      color: theme.custom ? theme.custom.palette.input : 'inherit',
+      color: theme.custom ? (theme.custom.palette.input ? theme.custom.palette.input : theme.custom.palette.text) : 'inherit',
       fontWeight: 600,
     },
   })
 });
 
-const List = ({ actions, history, state }) => {
+const List = ({ actions, history, state, cache }) => {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState('All');
   const [search, setSearch] = useState('');
@@ -37,10 +41,12 @@ const List = ({ actions, history, state }) => {
   const classes = useStyles();
 
   const fetchCountries = () => {
-    const url = region === 'All' ? 'https://restcountries.eu/rest/v2/all?fields=name;flag;population;region;capital' : `https://restcountries.eu/rest/v2/region/${region}?fields=name;flag;population;region;capital`;
-    actions.fetchSubscription(url, {
-      method: 'GET',
-    });
+    if (!cache || (state.subscription && state.subscription.length === 0)) {
+      const url = region === 'All' ? 'https://restcountries.eu/rest/v2/all?fields=name;flag;population;region;capital' : `https://restcountries.eu/rest/v2/region/${region}?fields=name;flag;population;region;capital`;
+      actions.fetchSubscription(url, {
+        method: 'GET',
+      });
+    }
   };
 
   const handleClick = country => {
@@ -80,16 +86,24 @@ const List = ({ actions, history, state }) => {
 
   return (
     <Grid container spacing={4} style={{ boxSize: 'border-box', margin: '0 auto', maxWidth: '100%' }}>
-      <Grid item xs={12}>
-        <Grid container justify="space-between">
-          <Search classes={classes} handleSearch={handleSearch} search={search} />
-          <Regions classes={classes} handleChange={handleChange} region={region} />
-        </Grid>
-      </Grid>
       {
-        countries && countries.map(country => (
-          <Item key={country.name} country={country} handleClick={handleClick} />
-        ))
+        state.loading
+          ? <Loader options={{scope: 'element'}} />
+          : (
+            <>
+              <Grid item xs={12}>
+                <Grid container justify="space-between">
+                  <Search classes={classes} handleSearch={handleSearch} search={search} />
+                  <Regions classes={classes} handleChange={handleChange} region={region} />
+                </Grid>
+              </Grid>
+              {
+                countries && countries.map(country => (
+                  <Item key={country.name} country={country} handleClick={handleClick} />
+                ))
+              }
+            </>
+          )
       }
     </Grid>
   )

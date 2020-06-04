@@ -1,3 +1,7 @@
+.dark .MuiInputBase-input {
+  color: #fff;
+}
+
 .MuiInputBase-input {
   font-weight: 600 !important;
 }

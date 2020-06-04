@@ -1,13 +1,26 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import { useTheme } from '@material-ui/core/styles';
+import { Grid, FormControl, Select, MenuItem } from '@material-ui/core';
 
 const Regions = ({ classes, handleChange, region }) => {
+  const theme = useTheme();
+
   return (
     <Grid item xs={6} md={7} style={{ display: 'flex', justifyContent: 'flex-end' }}>
       <FormControl>
+        {
+          document.querySelector('.dark')
+          ? 
+          (<style>
+            {`
+            .MuiPopover-paper {
+              background-color: ${theme.custom.palette.element} !important;
+              color: #fff !important;
+              top: 162px !important;
+            }`}
+          </style>)
+          : null
+        }
         <Select
           style={{ minWidth: '200px' }}
           onChange={handleChange}

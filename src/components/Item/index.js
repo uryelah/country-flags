@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState } from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -20,12 +20,38 @@ const useStyles = makeStyles(theme => {
       fontSize: '14px',
       padding: '18px',
       textAlign: 'left',
+      minHeight: '246px',
     },
   })
 });
 
 const Item = ({ country, handleClick }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const [matches, setMatches] = useState(false);
+  const [matchesBig, setMatchesBig] = useState(false);
+
+  const checkWidth = () => {
+    const width = window.document.body.clientWidth;
+
+    if (width <= theme.breakpoints.values.sm) {
+      setMatches(true);
+      setMatchesBig(false);
+    } else if (width <= theme.breakpoints.values.md) {
+      setMatches(false);
+      setMatchesBig(true);
+    }
+  };
+
+  const checkOnResize = () => {
+    window.addEventListener('resize', () => {
+      checkWidth();
+    });
+  };
+
+  useEffect(checkWidth, []);
+
+  useEffect(checkOnResize, []);
 
   const handleKeyDown = (e, country) => {
     if (e.key === 'Enter') {
@@ -48,7 +74,7 @@ const Item = ({ country, handleClick }) => {
         style={{ cursor: 'pointer', border: 'none', backgroundColor: 'transparent' }}
       >
         <Paper className={classes.main} elevation={3}>
-          <Box style={{ backgroundImage: `url(${country.flag})`, backgroundPosition: 'center center', backgroundSize: 'cover', display: 'flex', height: '211.117px' }} />
+          <Box style={{ backgroundImage: `url(${country.flag})`, backgroundPosition: 'center center', backgroundSize: 'cover', display: 'flex', height: `${matches ? `calc((100vw - 96px) * 0.75)` : (matchesBig ? `calc((50vw - 96px) * 0.75)` : `calc((25vw - 96px) * 0.75)`)}`, width: 'auto' }} />
           <Box className={classes.text}>
             <Typography className={classes.title} variant="h5" component="h2">
               {

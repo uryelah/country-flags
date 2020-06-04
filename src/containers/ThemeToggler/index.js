@@ -21,7 +21,12 @@ const useStyles = makeStyles(theme => {
     },
     main: {
       color: theme.custom ? (theme.custom.palette.input ? theme.custom.palette.input : theme.custom.palette.text) : 'inherit',
+      cursor: 'pointer',
       fontSize: '14px',
+      "&:hover": {
+        backgroundColor: theme.custom ? (theme.custom.palette.inverse.bg) : 'inherit',
+        color: theme.custom ? (theme.custom.palette.inverse.input ? theme.custom.palette.inverse.input : theme.custom.palette.inverse.text) : 'inherit',
+      },
     },
   })
 });
@@ -38,10 +43,10 @@ const ThemeToggler = ({ state, actions }) => {
 
   useEffect(() => {
     setDark(state.dark);
-  }, []);
+  }, [state.dark]);
 
   return (
-    <Button className={classes.main} onClick={handleClick}>
+    <Button className={`${classes.main} ${dark ? 'togglerDark' : 'togglerLight'}`} onClick={handleClick}>
       {
         dark
         ? (
@@ -60,7 +65,6 @@ const ThemeToggler = ({ state, actions }) => {
     </Button>
   )
 };
-
 
 function mapStateToProps({ state, group }) {
   return { state: { ...state, ...group } };

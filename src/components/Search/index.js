@@ -20,7 +20,7 @@ const Search = ({ classes, handleSearch, search }) => {
         startAdornment: (
           <InputAdornment>
             <IconButton>
-              <SearchIcon />
+              <SearchIcon className={classes.color}/>
             </IconButton>
           </InputAdornment>
         )

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import { appTheme, darkTheme } from './appStyles';
 
-import Page from './components/Page';
+import Page from './containers/Page';
 
 function App({ state }) {
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState(appTheme());
 
   useEffect(() => {
     setTheme(state.dark ? darkTheme : appTheme());
@@ -17,7 +15,7 @@ function App({ state }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Page/>
+      <Page className={state.dark ? 'dark' : 'light'}/>
     </ThemeProvider>
   );
 }

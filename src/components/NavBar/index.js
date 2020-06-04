@@ -1,11 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import React, { useEffect, useState } from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { AppBar, Grid, Toolbar, Typography} from '@material-ui/core';
 import HideOnScroll from '../HideOnScroll';
-import ThemeToggler from '../ThemeToggler';
+import ThemeToggler from '../../containers/ThemeToggler';
 
 const useStyles = makeStyles(theme => {
   return ({
@@ -13,6 +10,10 @@ const useStyles = makeStyles(theme => {
       backgroundColor: theme.custom ? theme.custom.palette.element : 'transparent',
       boxShadow: theme.shadows[2],
       color: theme.custom ? theme.custom.palette.text : 'inherit',
+      maxWidth: `${theme.breakpoints.values.xl}px`,
+    },
+    aboveMaxWidth: {
+      left: `calc((100vw - ${theme.breakpoints.values.xl}px)/2)`,
     },
     title: {
       fontWeight: 800,
@@ -22,11 +23,20 @@ const useStyles = makeStyles(theme => {
 
 const NavBar = (props) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const mediaMatch = window.matchMedia(`(min-width: ${theme.breakpoints.values.xl - 1}px)`);
+  const [matches, setMatches] = useState(mediaMatch.matches);
+
+  useEffect(() => {
+    const handler = e => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
 
   return (
     <>
       <HideOnScroll {...props}>
-        <AppBar className={classes.main}>
+        <AppBar className={matches ? `${classes.aboveMaxWidth} ${classes.main}` : classes.main}>
           <Toolbar>
             <Grid container justify="space-between">
               <Typography className={classes.title} variant="h6" component="h1">Where in the world?</Typography>
