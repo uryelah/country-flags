@@ -9,6 +9,8 @@ You can use any JavaScript framework/library on the front-end such as [React](ht
 
 ## Features
 
+<img src="./public/demo.gif">
+
 - See all countries from the API on the homepage
 - Search for a country using an `input` field
 - Filter countries by region
