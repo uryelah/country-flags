@@ -34,9 +34,7 @@
 ## Table of Contents
 
 * [About](#about)
-* [About the App](#about-the-app)
-* [Navigation](#navigation)
-* [Characters](#characters)
+* [Features](#features)
 * [Views](#views)
 * [Routes](#routes)
 * [Prerequisites](#prerequisites)
@@ -130,39 +128,6 @@ This project was built using the React SPA framework, consuming the data from th
 | `npm run test` | Run the available tests |
 | `npm run predeploy` | Build code for deployment |
 | `npm run deploy` | Pushes built code to gh-pages |
-
--------
-
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 <!-- CONTACT -->
 ## Contact
