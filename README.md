@@ -1,4 +1,51 @@
-View this project live at [Firebase](https://countries-db.web.app/).
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://countries-db.web.app/">
+    <img src="./public/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h1 align="center">
+    <a href="https://countries-db.web.app/">
+    Country-flags
+    </a>
+  </h1>
+
+  <p align="center">
+    A simple SPA country-flags webapp
+    <br />
+    <a href="https://countries-db.web.app/"><strong>Use it live here »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/uryelah/country-flags/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/uryelah/country-flags/issues">Request Feature</a>
+  </p>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About](#about)
+* [About the App](#about-the-app)
+* [Navigation](#navigation)
+* [Characters](#characters)
+* [Views](#views)
+* [Routes](#routes)
+* [Prerequisites](#prerequisites)
+* [Built With](#built-with)
+* [Commands](#available-commands)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
+* [CopyRight/Attributions](#copyRight/Attributions)
+
 
 ## About
 
@@ -80,3 +127,40 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+<!-- CONTACT -->
+## Contact
+
+👤 **Sarah Uryelah Silva Chamorro**
+
+- Github: [@uryelah](https://github.com/uryelah)
+- Twitter: [@sarah_chamorro](https://twitter.com/sarah_chamorro)
+- Linkedin: [Sharah Chamorro](https://www.linkedin.com/in/uryelah/)
+- Email: [sarahchamorro@gmail.com](sarahchamorro@gmail.com)
+
+## Acknowledgements
+* [StackOverflow](stackoverflow.com/)
+* [Create React App](https://github.com/facebook/create-react-app)
+* Microverse
+* Team 54
+
+## CopyRight/Attributions
+
+This project was only possible thanks to the creators bellow:
+
+[REST Countries API](https://restcountries.eu)
+
+-------
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-url]: https://github.com/uryelah/country-flags/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-url]: https://github.com/uryelah/country-flags/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-url]: https://github.com/uryelah/country-flags/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-url]: https://github.com/uryelah/country-flags/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-url]: https://github.com/uryelah/country-flags/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/uryelah/
