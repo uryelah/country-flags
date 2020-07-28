@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://countries-db.web.app/">
-    <img src="./public/logo.png" alt="Logo" width="80" height="80">
+    <img src="./public/favicon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h1 align="center">
