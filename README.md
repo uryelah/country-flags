@@ -65,38 +65,74 @@ You can use any JavaScript framework/library on the front-end such as [React](ht
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode
 
-### `yarn start`
+## Views
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This app includes 4 different views:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Countries list page
 
-### `yarn test`
+- Countries search page
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Country details page
 
-### `yarn build`
+## Routes
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Route | Description |
+|---------|-------------|
+| `/` | Root route, you can select a country from the list or search a country here |
+| `/:<COUNTRY NAME>` | Details route, you can see information about a specific country here |
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you want to...
 
-### `yarn eject`
+**View this app online**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Simply access [this link](https://countries-db.web.app/) and enjoy the game!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Run it locally**
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
+1. Make sure you have [node installed](https://nodejs.org/en/download/) in your local environment.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Download or clone this repository
+
+3. Navigate to the game root directory in your terminal
+
+4. Install the required packages:
+```sh
+npm i
+```
+5. Start the game in your browser:
+```sh
+npm run start
+```
+
+### Built With
+This project was built using the React SPA framework, consuming the data from the [REST Countries API](https://restcountries.eu), together with Redux for state management.
+
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Javascript](https://developer.mozilla.org/en-US/docs/Web/javascript)
+* [Redux-thunk](https://github.com/reduxjs/redux-thunk)
+* [Learn to read and write Japanese kanji API](https://rapidapi.com/KanjiAlive/api/learn-to-read-and-write-japanese-kanji/endpoints)
+* [Webpack](https://webpack.js.org/)
+* [Babel](https://babeljs.io/)
+
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm install` | Install project dependencies |
+| `npm start` | Build project and open web server running project |
+| `npm eject` | Eject configuration files for customization
+| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+| `npm run test` | Run the available tests |
+| `npm run predeploy` | Build code for deployment |
+| `npm run deploy` | Pushes built code to gh-pages |
+
+-------
+
 
 ## Learn More
 
